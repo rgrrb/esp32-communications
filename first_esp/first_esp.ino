@@ -47,6 +47,7 @@ String buildPage() {
   String html = "<!DOCTYPE html><html><head>";
   html += "<meta charset ='utf-8'>";
   html += "<meta name='viewport' content='width=devide-width'>";
+  html += "<script> function refresh(refreshPeriod) { setTimeout('location.reload(true)', refreshPeriod); } window.onload = refresh(5000);</script>";
   html += "<title>ESP32 Dashboard</title>";
 
   html += "<style>";
@@ -72,11 +73,11 @@ String buildPage() {
   html += "<h2>Sensor DHT11</h2>";
 
   html += "<p>Temperatura: ";
-  html += String(temperatura);
+  html += float(temperatura);
   html += " °C</p>";
 
   html += "<p>Umidade: ";
-  html += String(umidade);
+  html += float(umidade);
   html += " %</p>";
 
   html += "</body></html>";
@@ -175,6 +176,7 @@ void setupRouter() {
       umidade = server.arg("hum").toFloat();
     }
 
+    buildPage();
     Serial.println("[DHT] Dados recebidos:");
     Serial.print("Temp: ");
     Serial.println(temperatura);
@@ -190,7 +192,7 @@ void setupRouter() {
 //**********************************************
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   delay(1000);
 
   Serial.println("\n[BOOT] Inicializando ESP32...");

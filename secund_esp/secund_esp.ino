@@ -19,7 +19,7 @@ const char* ssid = "IoT-B08";
 const char* password = "12345678";
 
 // Servidor (ESP32 #1)
-const char* serverIP = "10.107.148.144";
+const char* serverIP = "192.168.0.113";
 
 // Controle
 unsigned long lastSend = 0;
@@ -59,6 +59,7 @@ bool connectWiFi() {
     Serial.println(WiFi.localIP());
 
     return true;
+
   } else {
 
     Serial.println("\n[WiFi] Falha na conexão.");
